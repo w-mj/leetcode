@@ -31,3 +31,22 @@ struct TreeNode {
 };
 
 using namespace std;
+
+ListNode* makeList(vector<int> list) {
+    if (list.empty()) return nullptr;
+    ListNode* head = new ListNode(list[0]);
+    ListNode* cursor = head;
+    for (vector<int>::iterator iter = list.begin() + 1; iter != list.end(); iter++) {
+        cursor->next = new ListNode(*iter);
+        cursor = cursor -> next;
+    }
+    return head;
+}
+
+void printList(ListNode* list) {
+    while(list) {
+        cout << list->val << " ";
+        list = list->next;
+    }
+    cout << endl;
+}
