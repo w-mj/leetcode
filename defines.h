@@ -9,13 +9,17 @@
 #include <ctime>
 #include <cstring>
 #include <set>
+#include <map>
 #include <unordered_map>
 #include <algorithm>
 #include <cctype>
+#include <queue>
 
 #define START_TIMER int __start_timer = clock();
 #define END_TIMER int __during_time = (clock() - __start_timer) * 1000 / CLOCKS_PER_SEC; \
         cout << "during " << __during_time << " ms." << endl;
+
+using namespace std;
 
 
 struct ListNode {
@@ -30,7 +34,32 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
-using namespace std;
+struct UndirectedGraphNode {
+    int label;
+    vector<UndirectedGraphNode *> neighbors;
+    UndirectedGraphNode(int x) : label(x) {};
+    void print(set<UndirectedGraphNode*>* sett=nullptr) {
+        bool head = false;
+        if (!sett) {
+            sett = new set<UndirectedGraphNode*>;
+            head = true;
+        }
+        sett->insert(this);
+        cout << label;
+        for (auto n: neighbors) {
+            cout << "," << n->label;
+        }
+        cout << "#";
+        for (auto n: neighbors) {
+            if (sett->find(n) == sett->end())
+                n->print(sett);
+        }
+        if (head) {
+            delete sett;
+            cout << endl;
+        }
+    }
+};
 
 ListNode* makeList(vector<int> list) {
     if (list.empty()) return nullptr;
