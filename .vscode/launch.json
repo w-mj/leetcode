@@ -10,7 +10,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/${fileBasenameNoExtension}.out",
-            "args": [],
+            "args": ["-DLOCAL_DEBUG"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
