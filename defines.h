@@ -18,6 +18,7 @@
 #define START_TIMER int __start_timer = clock();
 #define END_TIMER int __during_time = (clock() - __start_timer) * 1000 / CLOCKS_PER_SEC; \
         cout << "during " << __during_time << " ms." << endl;
+#define ll long long
 
 using namespace std;
 
@@ -76,6 +77,23 @@ void printList(ListNode* list) {
     while(list) {
         cout << list->val << " ";
         list = list->next;
+    }
+    cout << endl;
+}
+
+void printList(vector<int>& v) {
+    for (int c: v) {
+        cout << c << ' ';
+    }
+    cout << endl;
+}
+
+void printList(vector<vector<int>>& vv) {
+    for (auto& v : vv) {
+        for (int c : v) {
+            cout << c << ' ';
+        }
+        cout << endl;
     }
     cout << endl;
 }

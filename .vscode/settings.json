@@ -51,7 +51,8 @@
         "deque": "cpp",
         "cstring": "cpp",
         "ctime": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "stack": "cpp"
     }, // 因为有clang的补全，所以关掉
     "editor.glyphMargin": true,
 }
