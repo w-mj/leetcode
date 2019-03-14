@@ -1,2 +1,1 @@
-
-                last_pick = temp[index] = num
+m

@@ -97,3 +97,14 @@ void printList(vector<vector<int>>& vv) {
     }
     cout << endl;
 }
+
+void printList(vector<vector<string>>& vv)
+{
+    for (auto& v : vv) {
+        for (string& c : v) {
+            cout << c << ' ';
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
