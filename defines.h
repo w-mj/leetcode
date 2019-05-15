@@ -62,6 +62,13 @@ struct UndirectedGraphNode {
     }
 };
 
+struct Interval {
+    int start;
+    int end;
+    Interval() : start(0), end(0) {}
+    Interval(int s, int e) : start(s), end(e) {}
+};
+
 ListNode* makeList(vector<int> list) {
     if (list.empty()) return nullptr;
     ListNode* head = new ListNode(list[0]);
