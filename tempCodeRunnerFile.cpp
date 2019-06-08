@@ -1,3 +1,4 @@
- for (int i = 0; i <= target; i++) {
-            cout << i << ":" << dp[i] << endl;
-        }
+if (odd(a) && even(b))
+                return 0;
+            if (even(a) && odd(b))
+                return 1;
