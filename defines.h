@@ -11,10 +11,12 @@
 #include <set>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 #include <algorithm>
 #include <cctype>
 #include <queue>
 #include <iterator>
+#include <sstream>
 
 #define START_TIMER int __start_timer = clock();
 #define END_TIMER int __during_time = (clock() - __start_timer) * 1000 / CLOCKS_PER_SEC; \
@@ -34,6 +36,19 @@ struct TreeNode {
     TreeNode *left;
     TreeNode *right;
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
+class Node {
+public:
+    int val;
+    vector<Node*> children;
+
+    Node() {}
+
+    Node(int _val, vector<Node*> _children) {
+        val = _val;
+        children = _children;
+    }
 };
 
 struct UndirectedGraphNode {
