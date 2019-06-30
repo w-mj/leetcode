@@ -105,7 +105,7 @@ void printList(ListNode* list) {
     cout << endl;
 }
 
-void printList(vector<int>& v) {
+void printList(const vector<int>& v) {
     for (int c: v) {
         cout << c << ' ';
     }
