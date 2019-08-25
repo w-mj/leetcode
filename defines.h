@@ -22,7 +22,6 @@
 #define START_TIMER int __start_timer = clock();
 #define END_TIMER int __during_time = (clock() - __start_timer) * 1000 / CLOCKS_PER_SEC; \
         cout << "during " << __during_time << " ms." << endl;
-#define ll long long
 
 using namespace std;
 
