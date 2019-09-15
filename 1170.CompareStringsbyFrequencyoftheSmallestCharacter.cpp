@@ -36,5 +36,8 @@ public:
 };
 
 int main(void) {
-
+    vector<string> q1 = {"cbd"};
+    vector<string> w1 = {"zaaaz"};
+    vector<string> q2 = {"bbb","cc"};
+    vector<string> w2 = {"a","aa","aaa","aaaa"}
 }

@@ -9,7 +9,6 @@ public:
     vector<int> empty;
 
     DinnerPlates(int capacity): cap(capacity) {
-        
     }
     
     void push(int val) {
