@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include <string>
@@ -20,6 +21,7 @@
 #include <bitset>
 #include <list>
 #include <numeric>
+#include <bits/stdc++.h>
 
 #define START_TIMER int __start_timer = clock();
 #define END_TIMER int __during_time = (clock() - __start_timer) * 1000 / CLOCKS_PER_SEC; \
@@ -127,7 +129,7 @@ void printList(set<int>& v) {
     cout << endl;
 }
 
-void printList(vector<vector<int>>& vv) {
+void printList(const vector<vector<int>>& vv) {
     for (auto& v : vv) {
         for (int c : v) {
             cout << c << ' ';
