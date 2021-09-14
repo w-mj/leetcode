@@ -4,3 +4,5 @@
 *.ilk
 *.pdb
 *.stackdump
+*.obj
+tempCodeRunnerFile.cpp

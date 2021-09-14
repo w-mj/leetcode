@@ -1,4 +1,5 @@
 #pragma once
+#include <cassert>
 #include <iostream>
 #include <vector>
 #include <string>
@@ -21,7 +22,8 @@
 #include <bitset>
 #include <list>
 #include <numeric>
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+#include <cctype>
 
 #define START_TIMER int __start_timer = clock();
 #define END_TIMER int __during_time = (clock() - __start_timer) * 1000 / CLOCKS_PER_SEC; \
@@ -148,4 +150,117 @@ void printList(vector<vector<string>>& vv)
         cout << endl;
     }
     cout << endl;
+}
+
+
+#define SKIPBLANK while (isblank(*s)) s++
+#define UNEXPECTED fprintf(stderr, "Unexpected character %c in %s.\n", *s, __func__);
+#define SETEND(x) if (endP != nullptr) *endP = (x)
+
+int getInt(const char*s, const char **endP) {
+    int current = 0;
+    bool negative = false;
+    int state = 0;
+    while (true) {
+        switch (state) {
+            case 0: {
+                if (isblank(*s)) {
+                    // nothing happens;
+                } else if (*s == '-') {
+                    negative = true;
+                } else if (isdigit(*s)) {
+                    current = *s - '0';
+                    state = 1;
+                } else {
+                    fprintf(stderr, "unexpected character %c in getInt.", *s);
+                    SETEND(s);
+                    if (negative) {
+                        return -current;
+                    }
+                    return current;
+                }
+                break;
+            }
+            case 1: {
+                if (isdigit(*s)) {
+                    current = current * 10 + *s - '0';
+                } else {
+                    SETEND(s);
+                    if (negative) {
+                        return -current;
+                    }
+                    return current;
+                }
+                break;
+            }
+            default: {
+                fprintf(stderr, "Wrong state %d in getInt.\n", state);
+            }
+        }
+        s++;
+    }
+    if (negative) {
+        return -current;
+    }
+    return current;
+}
+
+vector<int> getVectorOfInt(const char *s, const char **endP) {
+    vector<int> result;
+    int state = 0;
+    int current = 0;
+    bool negative = false;
+    while (*s) {
+        switch (state) {
+            case 0: {
+                assert(*s == '[');
+                state = 1;
+                break;
+            }
+            case 1: {
+                if (isdigit(*s) || (*s == '-') || isblank(*s)) {
+                    result.push_back(getInt(s, &s));
+                }
+                while (isblank(*s))
+                    s++;
+                if (*s == ']') {
+                    SETEND(s + 1);
+                    return result;
+                } else if (*s == ',') {
+                    // nothing happens
+                } else {
+                    fprintf(stderr, "unexpected character %c in getVectorOfInt.\n", *s);
+                    return result;
+                }
+                break;
+            }
+        }
+        s++;
+    }
+    return result;
+}
+
+vector<vector<int>> getVectorOfVectorOfInt(const char *s, const char **endP) {
+    vector<vector<int>> result;
+    SKIPBLANK;
+    if (*s != '[') {
+        fprintf(stderr, "unexpected character %c in getVectorOfVectorOfInt.\n", *s);
+        return result;
+    }
+    s++;
+    SKIPBLANK;
+    while (*s != ']') {
+        if (*s != '[') {
+            UNEXPECTED;
+            return result;
+        }
+        result.emplace_back(getVectorOfInt(s, &s));
+        SKIPBLANK;
+        if (*s == ',') {
+            s++;
+        };
+        SKIPBLANK;
+    };
+    SETEND(s + 1);
+    return result;
 }
