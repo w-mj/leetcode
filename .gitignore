@@ -5,4 +5,6 @@
 *.pdb
 *.stackdump
 *.obj
+*.exp
+*.lib
 tempCodeRunnerFile.cpp
