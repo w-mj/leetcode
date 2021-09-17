@@ -2,20 +2,7 @@
 
 using namespace std;
 
-template<typename T>
-std::ostream& operator<<(std::ostream& out, const vector<T>& vec) {
-    out << "[";
-    for (int i = 0; i < vec.size(); i++) {
-        auto& x = vec[i];
-        if (i == vec.size() - 1) {
-            out << x;
-        } else {
-            out << x << ", ";
-        }
-    }
-    out << "]";
-    return out;
-}
+
 
 template<typename T>
 struct Test {
