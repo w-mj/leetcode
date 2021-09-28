@@ -42,6 +42,7 @@ struct TreeNode {
     TreeNode *left;
     TreeNode *right;
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right): val(x), left(left), right(right) {}
 };
 
 class Node {
@@ -100,6 +101,15 @@ ListNode* makeList(vector<int> list) {
         cursor = cursor -> next;
     }
     return head;
+}
+
+ostream& operator<<(ostream& out, TreeNode* treenode) {
+    if (treenode == nullptr) {
+        out << "TreeNode(null)";
+    } else {
+        out << "TreeNode(" << treenode->val << ")";
+    }
+    return out;
 }
 
 void printList(ListNode* list) {
@@ -221,7 +231,7 @@ int getInt(const char*s, const char **endP) {
     return current;
 }
 
-vector<int> getVectorOfInt(const char *s, const char **endP) {
+vector<int> getVectorOfInt(const char *s, const char **endP=nullptr) {
     vector<int> result;
     int state = 0;
     int current = 0;
@@ -256,7 +266,7 @@ vector<int> getVectorOfInt(const char *s, const char **endP) {
     return result;
 }
 
-vector<vector<int>> getVectorOfVectorOfInt(const char *s, const char **endP) {
+vector<vector<int>> getVectorOfVectorOfInt(const char *s, const char **endP=nullptr) {
     vector<vector<int>> result;
     SKIPBLANK;
     if (*s != '[') {
