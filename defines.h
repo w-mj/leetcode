@@ -178,6 +178,13 @@ std::ostream& operator<<(std::ostream& out, const vector<T>& vec) {
     return out;
 }
 
+template<typename A, typename B>
+std::ostream& operator<<(std::ostream& out, const pair<A, B>& p) {
+    return out << "(" << p.first << ", " << p.second << ")";
+}
+
+
+
 
 #define SKIPBLANK while (isblank(*s)) s++
 #define UNEXPECTED fprintf(stderr, "Unexpected character %c in %s.\n", *s, __func__);
