@@ -238,7 +238,7 @@ int getInt(const char*s, const char **endP) {
     return current;
 }
 
-vector<int> getVectorOfInt(const char *s, const char **endP=nullptr) {
+vector<int> getVectorOfInt(const char *s, const char **endP=nullptr, bool nullAsIntMax=false) {
     vector<int> result;
     int state = 0;
     int current = 0;
@@ -253,6 +253,10 @@ vector<int> getVectorOfInt(const char *s, const char **endP=nullptr) {
             case 1: {
                 if (isdigit(*s) || (*s == '-') || isblank(*s)) {
                     result.push_back(getInt(s, &s));
+                }
+                if (nullAsIntMax && *s == 'n' && s[1] == 'u' && s[2] == 'l' && s[3] == 'l') {
+                    result.push_back(INT_MAX);
+                    s += 4;
                 }
                 while (isblank(*s))
                     s++;
@@ -296,4 +300,30 @@ vector<vector<int>> getVectorOfVectorOfInt(const char *s, const char **endP=null
     };
     SETEND(s + 1);
     return result;
+}
+
+TreeNode* getTree(const char *s, const char **endP=nullptr) {
+    vector<int> vec = getVectorOfInt(s, endP, true);
+    if (vec.size() == 0 || vec[0] == INT_MAX) {
+        return nullptr;
+    }
+    TreeNode* root = new TreeNode(vec[0]);
+    queue<TreeNode*> q;
+    q.push(root);
+    int cursor = 1;
+    while (!q.empty() && cursor < vec.size()) {
+        TreeNode* n = q.front();
+        q.pop();
+        if (vec[cursor] != INT_MAX) {
+            n->left = new TreeNode(vec[cursor]);
+            q.push(n->left);
+        }
+        cursor++;
+        if (vec[cursor] != INT_MAX) {
+            n->right = new TreeNode(vec[cursor]);
+            q.push(n->right);
+        }
+        cursor++;
+    }
+    return root;
 }
