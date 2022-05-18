@@ -134,7 +134,14 @@ void printList(vector<string>& v) {
     cout << endl;
 }
 
-void printList(set<int>& v) {
+void printList(const set<int>& v) {
+    for (auto c: v) {
+        cout << c << ' ';
+    }
+    cout << endl;
+}
+
+void printList(const set<string>& v) {
     for (auto c: v) {
         cout << c << ' ';
     }
